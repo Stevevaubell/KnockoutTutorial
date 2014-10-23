@@ -1,0 +1,57 @@
+﻿<div id="body" data-bind="with: UiViewModel">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1 data-bind="text: headerText"></h1>
+                <br />
+                <h2>This code is a guide on how to use Knockout with Web API.</h2>
+            </hgroup>
+            <p>
+                Click on the button below to get a JSON object from the server
+                <button id="getData" class="pull-right" data-bind="click: getPosts">Load Data</button>
+            </p>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        <div>
+            <h3>Add Post</h3>
+            <div class="row">
+                <div class="col-sm-pull-2">
+                    <label>Title</label>
+                </div>
+                <div class="col-sm-pull-9">
+                    <input style="margin-left: 10px;" id="title" type="text" data-bind="value: titleText" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-pull-2">
+                    <label style="vertical-align: top">Post</label>
+                </div>
+                <div class="col-sm-pull-9">
+                    <textarea style="margin-left: 10px; width: 300px; height: 85px;" data-bind="value: postText"></textarea>
+                    <button id="saveData" class="pull-right" data-bind="click: savePost">Save Post</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-pull-2">
+                    <label>Author</label>
+                </div>
+                <div class="col-sm-pull-9">
+                    <input style="margin-left: 10px;" id="author" type="text" data-bind="value: author" />
+                </div>
+            </div>
+        </div>
+        <h3>Posts</h3>
+        <ol class="round" data-bind="foreach: blogPosts">
+            <li data-bind="attr: { 'class': '_' + ($index() + 1) }">
+                <h4 data-bind="text: Title"></h4>
+                <div data-bind="text: Body"></div>
+            </li>
+        </ol>
+    </section>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        ko.applyBindings(new UiViewModel());
+    });
+</script>
